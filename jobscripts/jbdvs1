@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --job-name=jbdvs1
+#SBATCH -N 1
+#SBATCH -o ../server_logs/jbdvs1.out 
+#SBATCH -e ../server_logs/jbdvs1.err
+#SBATCH --gres=gpu:1
+#SBATCH --mem=96000
+#SBATCH --time=240:00:00
+#SBATCH --mail-type=END
+
+echo "Executing on $HOSTNAME"
+
+module load gcc/latest
+module load nvidia/latest
+module load cudnn/latest
+
+python3 ../python_files/ben_data_vgg_s1.py
